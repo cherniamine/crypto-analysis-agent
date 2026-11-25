@@ -1,0 +1,1129 @@
+{
+  "phase": "11",
+  "classification": "LIVE",
+  "timestamp": "2026-11-24T14:38:28.019349+00:00",
+  "configuration": {
+    "news_evidence_limit": "5",
+    "evidence_context_char_budget": "18000",
+    "llm_timeout_seconds": "60",
+    "direct_repetitions": 3,
+    "graph_repetitions": 1
+  },
+  "inventory": {
+    "ollama_version": "0.24.0",
+    "installed_models": [
+      "phi3:mini",
+      "qwen3:4b",
+      "qwen3:8b"
+    ],
+    "model_metadata": [
+      {
+        "name": "qwen3:4b",
+        "modified_at": "2026-11-24T01:49:42.8688722+01:00",
+        "size": 2497293931,
+        "digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7"
+      },
+      {
+        "name": "qwen3:8b",
+        "modified_at": "2026-07-19T01:22:51.2625143+01:00",
+        "size": 5225388164,
+        "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41"
+      },
+      {
+        "name": "phi3:mini",
+        "modified_at": "2026-05-06T15:04:41.0551464+01:00",
+        "size": 2176178913,
+        "digest": "4f222292793889a9a40a020799cfd28d53f3e01af25d48e06c5e708610fc47e9"
+      }
+    ],
+    "running": []
+  },
+  "model_warmup": [
+    {
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 8508.03,
+      "model": "qwen3:8b"
+    },
+    {
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 4092.51,
+      "model": "qwen3:4b"
+    },
+    {
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 3633.34,
+      "model": "phi3:mini"
+    }
+  ],
+  "direct_inference": [
+    {
+      "model": "qwen3:8b",
+      "repetition": 1,
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 23696.03,
+      "structured_output": true,
+      "pydantic_valid": true,
+      "prompt_chars": 147,
+      "answer_sections_nonempty": 2
+    },
+    {
+      "model": "qwen3:8b",
+      "repetition": 2,
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 25311.7,
+      "structured_output": true,
+      "pydantic_valid": true,
+      "prompt_chars": 147,
+      "answer_sections_nonempty": 2
+    },
+    {
+      "model": "qwen3:8b",
+      "repetition": 3,
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 25225.92,
+      "structured_output": true,
+      "pydantic_valid": true,
+      "prompt_chars": 147,
+      "answer_sections_nonempty": 2
+    },
+    {
+      "model": "qwen3:4b",
+      "repetition": 1,
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 54349.38,
+      "structured_output": true,
+      "pydantic_valid": true,
+      "prompt_chars": 147,
+      "answer_sections_nonempty": 2
+    },
+    {
+      "model": "qwen3:4b",
+      "repetition": 2,
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 21792.98,
+      "structured_output": true,
+      "pydantic_valid": true,
+      "prompt_chars": 147,
+      "answer_sections_nonempty": 1
+    },
+    {
+      "model": "qwen3:4b",
+      "repetition": 3,
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 21892.25,
+      "structured_output": true,
+      "pydantic_valid": true,
+      "prompt_chars": 147,
+      "answer_sections_nonempty": 1
+    },
+    {
+      "model": "phi3:mini",
+      "repetition": 1,
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 1582.03,
+      "structured_output": true,
+      "pydantic_valid": true,
+      "prompt_chars": 147,
+      "answer_sections_nonempty": 1
+    },
+    {
+      "model": "phi3:mini",
+      "repetition": 2,
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 1536.57,
+      "structured_output": true,
+      "pydantic_valid": true,
+      "prompt_chars": 147,
+      "answer_sections_nonempty": 1
+    },
+    {
+      "model": "phi3:mini",
+      "repetition": 3,
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 1547.7,
+      "structured_output": true,
+      "pydantic_valid": true,
+      "prompt_chars": 147,
+      "answer_sections_nonempty": 1
+    }
+  ],
+  "graph_scenarios": [
+    {
+      "model": "qwen3:8b",
+      "scenario": "btc_market",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 22895.66,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 2,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 981,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": true,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "qwen3:8b",
+      "scenario": "eth_market",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 28136.56,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 2,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 981,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": true,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "qwen3:8b",
+      "scenario": "btc_news",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 28121.5,
+      "tools": [
+        "market",
+        "news"
+      ],
+      "evidence_count": 2,
+      "cited_count": 3,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "news_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 990,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": false,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "qwen3:8b",
+      "scenario": "eth_news",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 25024.58,
+      "tools": [
+        "market",
+        "news"
+      ],
+      "evidence_count": 2,
+      "cited_count": 0,
+      "citations_valid": true,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "news_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 993,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": true,
+        "source_attribution": false,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "qwen3:8b",
+      "scenario": "comparison",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 25034.12,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 2,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 989,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": true,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "qwen3:8b",
+      "scenario": "btc_market_context",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 21945.61,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 0,
+      "citations_valid": true,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 981,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": true,
+        "source_attribution": false,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      },
+      "context_source": "actual_prior_graph_execution"
+    },
+    {
+      "model": "qwen3:8b",
+      "scenario": "follow_up",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 17761.33,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 0,
+      "citations_valid": true,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 1540,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": true,
+        "source_attribution": false,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      },
+      "follow_up_context_present": true
+    },
+    {
+      "model": "qwen3:4b",
+      "scenario": "btc_market",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 70448.7,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 0,
+      "citations_valid": true,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 978,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": true,
+        "source_attribution": false,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "qwen3:4b",
+      "scenario": "eth_market",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 31136.99,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 1,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 982,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": true,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "qwen3:4b",
+      "scenario": "btc_news",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 24047.93,
+      "tools": [
+        "market",
+        "news"
+      ],
+      "evidence_count": 2,
+      "cited_count": 2,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "news_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 993,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": false,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "qwen3:4b",
+      "scenario": "eth_news",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 26183.19,
+      "tools": [
+        "market",
+        "news"
+      ],
+      "evidence_count": 2,
+      "cited_count": 2,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "news_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 993,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": false,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "qwen3:4b",
+      "scenario": "comparison",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 37880.9,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 2,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 989,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": true,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "qwen3:4b",
+      "scenario": "btc_market_context",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 49705.64,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 1,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 980,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": true,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      },
+      "context_source": "actual_prior_graph_execution"
+    },
+    {
+      "model": "qwen3:4b",
+      "scenario": "follow_up",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 54549.68,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 1,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 1636,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": true,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      },
+      "follow_up_context_present": true
+    },
+    {
+      "model": "phi3:mini",
+      "scenario": "btc_market",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 7399.03,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 1,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 981,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": true,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "phi3:mini",
+      "scenario": "eth_market",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 7724.0,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 2,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 982,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": true,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "phi3:mini",
+      "scenario": "btc_news",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 9976.13,
+      "tools": [
+        "market",
+        "news"
+      ],
+      "evidence_count": 2,
+      "cited_count": 2,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "news_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 993,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": false,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "phi3:mini",
+      "scenario": "eth_news",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 9017.97,
+      "tools": [
+        "market",
+        "news"
+      ],
+      "evidence_count": 2,
+      "cited_count": 2,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "news_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 991,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": false,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "phi3:mini",
+      "scenario": "comparison",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 8805.62,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 2,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 989,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": true,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      }
+    },
+    {
+      "model": "phi3:mini",
+      "scenario": "btc_market_context",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 7997.25,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 2,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 980,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": true,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      },
+      "context_source": "actual_prior_graph_execution"
+    },
+    {
+      "model": "phi3:mini",
+      "scenario": "follow_up",
+      "repetition": 1,
+      "status": "passed",
+      "duration_ms": 9891.71,
+      "tools": [
+        "market"
+      ],
+      "evidence_count": 2,
+      "cited_count": 2,
+      "citations_valid": false,
+      "source_urls": 0,
+      "source_urls_in_answer": 0,
+      "classification": "LIVE",
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "response_validation"
+      ],
+      "synthesis_status": "complete",
+      "evidence_selection": {
+        "available_news": 0,
+        "selected_news": 0,
+        "dropped_news": 0
+      },
+      "prompt_chars_estimate": 1704,
+      "quality": {
+        "structured_response_validated": true,
+        "evidence_grounded": false,
+        "source_attribution": true,
+        "response_sections_present": {
+          "Market Data": true,
+          "News & Context": true,
+          "AI Analysis": true,
+          "Sources": true
+        }
+      },
+      "follow_up_context_present": true
+    }
+  ],
+  "aggregates": [
+    {
+      "model": "qwen3:8b",
+      "kind": "direct",
+      "successful_runs": 3,
+      "mean_ms": 24744.55,
+      "median_ms": 25225.92
+    },
+    {
+      "model": "qwen3:4b",
+      "kind": "direct",
+      "successful_runs": 3,
+      "mean_ms": 32678.2,
+      "median_ms": 21892.25
+    },
+    {
+      "model": "phi3:mini",
+      "kind": "direct",
+      "successful_runs": 3,
+      "mean_ms": 1555.43,
+      "median_ms": 1547.7
+    },
+    {
+      "model": "qwen3:8b",
+      "kind": "graph",
+      "successful_runs": 7,
+      "mean_ms": 24131.34,
+      "median_ms": 25024.58
+    },
+    {
+      "model": "qwen3:4b",
+      "kind": "graph",
+      "successful_runs": 7,
+      "mean_ms": 41993.29,
+      "median_ms": 37880.9
+    },
+    {
+      "model": "phi3:mini",
+      "kind": "graph",
+      "successful_runs": 7,
+      "mean_ms": 8687.39,
+      "median_ms": 8805.62
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "phase": "14",
+  "classification": "MIXED",
+  "verdict": "RELEASE CANDIDATE",
+  "repository": {
+    "git_commits_present": false,
+    "secret_scan_outside_ignored_env": "passed",
+    "env_files_ignored": true,
+    "example_credentials_sanitized": true
+  },
+  "checks": {
+    "backend_regression": {"classification": "MOCKED PASSED", "passed": 23, "warnings": 1},
+    "deterministic_evaluation": {"classification": "MOCKED PASSED", "passed": 20, "scenarios": 20},
+    "phase13_2_live_report": {"classification": "LIVE PASSED", "scenarios_passed": 7, "scenarios_total": 7},
+    "http_repository_restart": {"classification": "LIVE PASSED", "messages_after_restart": 4, "same_thread_follow_up": true},
+    "sqlite_checkpoint_round_trip": {"classification": "MOCKED PASSED"},
+    "frontend_build": {"classification": "PASSED"},
+    "typescript": {"classification": "PASSED"},
+    "playwright": {"classification": "INCONCLUSIVE", "attempted": 3, "passed": 0, "reason": "ERR_CONNECTION_TIMED_OUT after temporary frontend process exited"},
+    "eslint": {"classification": "NOT RUN", "reason": "No lint script or ESLint dependency"},
+    "postgresql_cloud_deployment": {"classification": "NOT RUN"}
+  },
+  "limitations": [
+    "Browser chat and browser follow-up are not validated by a stable Playwright run.",
+    "HTTP restart validation does not recover a LangGraph checkpoint; that is covered separately by the SQLite adapter test.",
+    "PostgreSQL, cloud deployment, and production deployment were not performed.",
+    "The workspace has no Git commits yet."
+  ],
+  "modified_for_audit": [
+    ".env.example",
+    ".env.local.example",
+    ".env.production.example",
+    "README.md",
+    "docs/testing.md",
+    "docs/release-audit.md",
+    "backend/evaluation/results/phase14_release_audit.json"
+  ],
+  "secrets_exposed_in_report": false
+}

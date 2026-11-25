@@ -1,0 +1,295 @@
+{
+  "phase": "13",
+  "classification": "LIVE",
+  "timestamp": "2026-11-24T15:12:27.052818+00:00",
+  "environment": {
+    "llm_provider": "ollama",
+    "model": "qwen3:8b",
+    "timeout_seconds": 60,
+    "news_evidence_limit": 5,
+    "evidence_context_char_budget": 18000
+  },
+  "scenarios": [
+    {
+      "name": "news_btc",
+      "query": "Latest Bitcoin news",
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 33700.39,
+      "history_used": false,
+      "tools_selected": [
+        "news"
+      ],
+      "tool_statuses": {
+        "news_tool": "ok"
+      },
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "news_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "citation_validation",
+        "response_validation"
+      ],
+      "market_records": 0,
+      "news_articles_received": 8,
+      "news_normalized": 8,
+      "news_evidence_created": 8,
+      "news_evidence_selected": 5,
+      "news_evidence_dropped": 3,
+      "market_evidence_in_llm_context": 0,
+      "news_evidence_in_llm_context": 5,
+      "news_evidence_with_urls": 5,
+      "citation_validation": {
+        "valid": true,
+        "cited_count": 5,
+        "invalid_ids": [],
+        "news_without_url": [],
+        "cited_urls_in_answer": 5,
+        "url_attribution_valid": true
+      },
+      "llm_synthesis_status": "complete",
+      "response_validation_status": "complete",
+      "prompt_chars_estimate": 3008
+    },
+    {
+      "name": "news_eth",
+      "query": "Latest Ethereum news",
+      "classification": "LIVE",
+      "status": "passed",
+      "duration_ms": 39886.38,
+      "history_used": false,
+      "tools_selected": [
+        "news"
+      ],
+      "tool_statuses": {
+        "news_tool": "ok"
+      },
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "news_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "citation_validation",
+        "response_validation"
+      ],
+      "market_records": 0,
+      "news_articles_received": 8,
+      "news_normalized": 8,
+      "news_evidence_created": 8,
+      "news_evidence_selected": 5,
+      "news_evidence_dropped": 3,
+      "market_evidence_in_llm_context": 0,
+      "news_evidence_in_llm_context": 5,
+      "news_evidence_with_urls": 5,
+      "citation_validation": {
+        "valid": true,
+        "cited_count": 0,
+        "invalid_ids": [],
+        "news_without_url": [],
+        "cited_urls_in_answer": 2,
+        "url_attribution_valid": true
+      },
+      "llm_synthesis_status": "complete",
+      "response_validation_status": "complete",
+      "prompt_chars_estimate": 3242
+    },
+    {
+      "name": "market_btc",
+      "query": "Analyze the current Bitcoin market situation",
+      "classification": "LIVE",
+      "status": "failed",
+      "duration_ms": 25940.62,
+      "history_used": false,
+      "tools_selected": [
+        "market"
+      ],
+      "tool_statuses": {
+        "market_tool": "ok"
+      },
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "citation_validation",
+        "response_validation"
+      ],
+      "market_records": 2,
+      "news_articles_received": 0,
+      "news_normalized": 0,
+      "news_evidence_created": 0,
+      "news_evidence_selected": 0,
+      "news_evidence_dropped": 0,
+      "market_evidence_in_llm_context": 2,
+      "news_evidence_in_llm_context": 0,
+      "news_evidence_with_urls": 0,
+      "citation_validation": {
+        "valid": false,
+        "cited_count": 3,
+        "invalid_ids": [
+          "news:0"
+        ],
+        "news_without_url": [],
+        "cited_urls_in_answer": 0,
+        "url_attribution_valid": true
+      },
+      "llm_synthesis_status": "complete",
+      "response_validation_status": "complete",
+      "prompt_chars_estimate": 1050
+    },
+    {
+      "name": "market_eth",
+      "query": "Analyze the current Ethereum market situation",
+      "classification": "LIVE",
+      "status": "failed",
+      "duration_ms": 33101.49,
+      "history_used": false,
+      "tools_selected": [
+        "market"
+      ],
+      "tool_statuses": {
+        "market_tool": "ok"
+      },
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "citation_validation",
+        "response_validation"
+      ],
+      "market_records": 2,
+      "news_articles_received": 0,
+      "news_normalized": 0,
+      "news_evidence_created": 0,
+      "news_evidence_selected": 0,
+      "news_evidence_dropped": 0,
+      "market_evidence_in_llm_context": 2,
+      "news_evidence_in_llm_context": 0,
+      "news_evidence_with_urls": 0,
+      "citation_validation": {
+        "valid": false,
+        "cited_count": 3,
+        "invalid_ids": [
+          "news:0"
+        ],
+        "news_without_url": [],
+        "cited_urls_in_answer": 0,
+        "url_attribution_valid": true
+      },
+      "llm_synthesis_status": "complete",
+      "response_validation_status": "complete",
+      "prompt_chars_estimate": 1051
+    },
+    {
+      "name": "combined_btc",
+      "query": "Analyze Bitcoin's current market situation and explain the latest important news affecting it.",
+      "classification": "LIVE",
+      "status": "failed",
+      "duration_ms": 30600.4,
+      "history_used": false,
+      "tools_selected": [
+        "market",
+        "news"
+      ],
+      "tool_statuses": {
+        "market_tool": "ok",
+        "news_tool": "ok"
+      },
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "news_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "citation_validation",
+        "response_validation"
+      ],
+      "market_records": 2,
+      "news_articles_received": 0,
+      "news_normalized": 0,
+      "news_evidence_created": 0,
+      "news_evidence_selected": 0,
+      "news_evidence_dropped": 0,
+      "market_evidence_in_llm_context": 2,
+      "news_evidence_in_llm_context": 0,
+      "news_evidence_with_urls": 0,
+      "citation_validation": {
+        "valid": true,
+        "cited_count": 0,
+        "invalid_ids": [],
+        "news_without_url": [],
+        "cited_urls_in_answer": 0,
+        "url_attribution_valid": true
+      },
+      "llm_synthesis_status": "complete",
+      "response_validation_status": "complete",
+      "prompt_chars_estimate": 1103
+    },
+    {
+      "name": "follow_up_eth",
+      "query": "What about Ethereum?",
+      "classification": "LIVE",
+      "status": "failed",
+      "duration_ms": 26462.6,
+      "history_used": true,
+      "tools_selected": [
+        "market"
+      ],
+      "tool_statuses": {
+        "market_tool": "ok"
+      },
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "market_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "citation_validation",
+        "response_validation"
+      ],
+      "market_records": 2,
+      "news_articles_received": 0,
+      "news_normalized": 0,
+      "news_evidence_created": 0,
+      "news_evidence_selected": 0,
+      "news_evidence_dropped": 0,
+      "market_evidence_in_llm_context": 2,
+      "news_evidence_in_llm_context": 0,
+      "news_evidence_with_urls": 0,
+      "citation_validation": {
+        "valid": false,
+        "cited_count": 2,
+        "invalid_ids": [
+          "news:0"
+        ],
+        "news_without_url": [],
+        "cited_urls_in_answer": 0,
+        "url_attribution_valid": true
+      },
+      "llm_synthesis_status": "complete",
+      "response_validation_status": "complete",
+      "prompt_chars_estimate": 2057,
+      "initial_execution_duration_ms": 28241.1,
+      "initial_tools_selected": [
+        "market",
+        "news"
+      ],
+      "initial_evidence_count": 2
+    }
+  ],
+  "limitations": [],
+  "verdict": "PARTIALLY VALIDATED"
+}

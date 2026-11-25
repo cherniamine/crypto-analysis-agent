@@ -1,0 +1,28 @@
+# Local environment files
+.env
+.env.*
+!.env.example
+!.env.local.example
+!.env.production.example
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Frontend generated files
+frontend/.next/
+frontend/node_modules/
+frontend/test-results/
+frontend/playwright-report/
+
+# TypeScript generated files
+*.tsbuildinfo
+
+# Python generated files
+__pycache__/
+.pytest_cache/
+*.py[cod]
+
+# Local IDE configuration
+.vscode/

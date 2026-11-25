@@ -1,0 +1,41 @@
+{
+  "phase": "15",
+  "timestamp": "2026-11-24",
+  "verdict": "READY WITH DOCUMENTED LIMITATIONS",
+  "classifications": {
+    "playwright": {"classification": "LIVE PASSED", "passed": 3, "total": 3, "scenarios": ["dashboard", "real_chat", "browser_follow_up"], "readiness_checks": ["backend_http_200", "frontend_http_200"]},
+    "backend_regression": {"classification": "MOCKED PASSED", "passed": 23, "warnings": 1},
+    "deterministic_evaluation": {"classification": "MOCKED PASSED", "passed": 20, "total": 20},
+    "frontend_build": {"classification": "PASSED"},
+    "typescript": {"classification": "PASSED"},
+    "http_repository_restart": {"classification": "LIVE PASSED", "messages_after_restart": 4, "source_phase": 14},
+    "sqlite_checkpoint_round_trip": {"classification": "MOCKED PASSED"},
+    "phase13_2_live_integration": {"classification": "LIVE PASSED", "passed": 7, "total": 7, "source_phase": 13.2},
+    "eslint": {"classification": "NOT RUN", "reason": "No lint script or ESLint dependency"},
+    "postgresql_cloud_deployment": {"classification": "NOT RUN"}
+  },
+  "repository_integrity": {
+    "git_commits_present": false,
+    "staging_or_commit_performed": false,
+    "env_ignored": true,
+    "generated_files_ignored": true,
+    "example_credentials_sanitized": true,
+    "secret_scan_outside_env": "passed",
+    "actual_env_modified": false
+  },
+  "modified_files": [
+    "frontend/tests/e2e/agent.spec.ts",
+    "README.md",
+    "docs/testing.md",
+    "docs/github-publication-audit.md",
+    "backend/evaluation/results/phase15_github_readiness.json"
+  ],
+  "publication_prerequisites": [
+    "Rotate any provider credentials if the previously exposed example values were real or published.",
+    "Review the complete untracked file set before the initial commit.",
+    "Do not stage .env, databases, node_modules, .next, caches, logs, or Playwright artifacts.",
+    "Cloud/PostgreSQL and ESLint remain optional documented limitations."
+  ],
+  "secrets_exposed_in_report": false,
+  "git_operations_performed": []
+}

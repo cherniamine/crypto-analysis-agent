@@ -1,0 +1,372 @@
+{
+  "evaluation_timestamp": "2026-11-24T17:29:17Z",
+  "dataset_version": "phase3-v1",
+  "mode": "deterministic-routing",
+  "scenarios": 20,
+  "passed": 20,
+  "failed": 0,
+  "metrics": {
+    "tool_selection_accuracy": 1,
+    "tool_success_rate": null,
+    "evidence_grounding_score": 1.0,
+    "source_attribution_accuracy": 1.0,
+    "response_completeness": 0,
+    "context_retention": 0,
+    "latency": {
+      "count": 20,
+      "average_ms": 0.0,
+      "min_ms": 0.0,
+      "max_ms": 0.02
+    },
+    "token_usage": "unavailable (no LLM execution)",
+    "estimated_cost": "unavailable (no LLM execution)"
+  },
+  "cases": [
+    {
+      "id": "btc-market",
+      "question": "Analyze Bitcoin's current market situation",
+      "expected_tools": [
+        "market"
+      ],
+      "selected_tools": [
+        "market"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.02,
+      "passed": true
+    },
+    {
+      "id": "eth-market",
+      "question": "What is happening with Ethereum price?",
+      "expected_tools": [
+        "market"
+      ],
+      "selected_tools": [
+        "market"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.01,
+      "passed": true
+    },
+    {
+      "id": "btc-eth-compare",
+      "question": "Compare BTC and ETH",
+      "expected_tools": [
+        "market"
+      ],
+      "selected_tools": [
+        "market"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.01,
+      "passed": true
+    },
+    {
+      "id": "sol-market",
+      "question": "Show SOL performance",
+      "expected_tools": [
+        "market"
+      ],
+      "selected_tools": [
+        "market"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "crypto-news",
+      "question": "What are the latest cryptocurrency headlines?",
+      "expected_tools": [
+        "news"
+      ],
+      "selected_tools": [
+        "news"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.01,
+      "passed": true
+    },
+    {
+      "id": "eth-news",
+      "question": "Find the latest Ethereum developments",
+      "expected_tools": [
+        "news"
+      ],
+      "selected_tools": [
+        "news"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "btc-news-market",
+      "question": "Explain Bitcoin market movement using recent news",
+      "expected_tools": [
+        "market",
+        "news"
+      ],
+      "selected_tools": [
+        "market",
+        "news"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "sentiment",
+      "question": "Analyze recent crypto market sentiment",
+      "expected_tools": [
+        "market",
+        "news"
+      ],
+      "selected_tools": [
+        "market",
+        "news"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "why-event",
+      "question": "What market events could explain recent price changes?",
+      "expected_tools": [
+        "market",
+        "news"
+      ],
+      "selected_tools": [
+        "market",
+        "news"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "general-definition",
+      "question": "What is a blockchain?",
+      "expected_tools": [],
+      "selected_tools": [],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "general-wallet",
+      "question": "How do crypto wallets work?",
+      "expected_tools": [],
+      "selected_tools": [],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "ambiguous",
+      "question": "Is it a good time?",
+      "expected_tools": [],
+      "selected_tools": [],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "followup-price",
+      "question": "What about ETH?",
+      "expected_tools": [
+        "market"
+      ],
+      "selected_tools": [
+        "market"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": true,
+      "context_ok": false,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "followup-news",
+      "question": "Which source supports that?",
+      "expected_tools": [
+        "news"
+      ],
+      "selected_tools": [
+        "news"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": true,
+      "context_ok": false,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "missing-market",
+      "question": "Analyze BTC with no market provider",
+      "expected_tools": [
+        "market"
+      ],
+      "selected_tools": [
+        "market"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "news-error",
+      "question": "Latest crypto news during a NewsAPI outage",
+      "expected_tools": [
+        "news"
+      ],
+      "selected_tools": [
+        "news"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "unsupported",
+      "question": "Analyze an unsupported coin ZZZ",
+      "expected_tools": [
+        "market"
+      ],
+      "selected_tools": [
+        "market"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "stale",
+      "question": "Use yesterday's stale BTC data",
+      "expected_tools": [
+        "market"
+      ],
+      "selected_tools": [
+        "market"
+      ],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "no-tool-greeting",
+      "question": "Hello, how are you?",
+      "expected_tools": [],
+      "selected_tools": [],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    },
+    {
+      "id": "no-tool-code",
+      "question": "Write Python code to calculate a moving average",
+      "expected_tools": [],
+      "selected_tools": [],
+      "answer": "",
+      "evidence_ids": [],
+      "source_urls": [],
+      "tool_results": [],
+      "is_follow_up": false,
+      "context_ok": true,
+      "latency_ms": 0.0,
+      "passed": true
+    }
+  ]
+}

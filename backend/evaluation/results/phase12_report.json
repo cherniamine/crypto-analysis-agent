@@ -1,0 +1,36 @@
+{
+  "phase": "12",
+  "classification": "MIXED",
+  "root_causes_confirmed": [
+    "Citation validation compared bracketed citation tokens such as [news:1] with unbracketed evidence IDs such as news:1.",
+    "News pipeline telemetry did not expose API, normalization, evidence-creation, or context-inclusion counts separately."
+  ],
+  "repairs": [
+    "Added normalized NewsAPI article counts and validation discard counts.",
+    "Added stable news evidence IDs based on original article order before ranking.",
+    "Added news evidence selection and LLM-context telemetry.",
+    "Added explicit citation validation for unknown IDs and news records without URLs.",
+    "Added focused native live validation script."
+  ],
+  "mocked": {
+    "status": "passed",
+    "backend_tests": 16,
+    "coverage": [
+      "normalization metadata preservation",
+      "deduplication",
+      "empty responses",
+      "market/news evidence merge",
+      "relevance selection",
+      "context budget",
+      "citation integrity",
+      "malformed URLs",
+      "pipeline telemetry"
+    ]
+  },
+  "live": {
+    "status": "not_run",
+    "reason": "The Codex sandbox cannot access the native host Ollama/NewsAPI execution context.",
+    "command": "python scripts/phase12_news_validation.py --query 'Latest Bitcoin news'"
+  },
+  "historical_phase11_note": "News graph completion was previously reported, but zero-news telemetry and citation validity were not sufficient to establish news synthesis integrity."
+}

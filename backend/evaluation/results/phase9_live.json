@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-11-24T00:11:54.473753+00:00",
+  "providers": {
+    "market": {
+      "status": "passed",
+      "provider_status": "ok",
+      "error_category": null,
+      "duration_ms": 1158.31,
+      "record_count": 2,
+      "symbols": [
+        "BTC",
+        "ETH"
+      ],
+      "retrieved_at_present": true
+    },
+    "news": {
+      "status": "passed",
+      "queries": {
+        "bitcoin": {
+          "status": "passed",
+          "provider_status": "ok",
+          "error_category": null,
+          "duration_ms": 467.22,
+          "article_count": 8,
+          "unique_url_count": 8,
+          "retrieved_at_present": true
+        },
+        "ethereum": {
+          "status": "passed",
+          "provider_status": "ok",
+          "error_category": null,
+          "duration_ms": 402.32,
+          "article_count": 8,
+          "unique_url_count": 8,
+          "retrieved_at_present": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "phase": "12",
+  "classification": "LIVE",
+  "timestamp": "2026-11-24T15:03:44.376485+00:00",
+  "provider": "NewsAPI",
+  "llm_provider": "ollama",
+  "query": "Latest Bitcoin news",
+  "pipeline": {
+    "provider_retrieval": {
+      "status": "passed",
+      "duration_ms": 645.98,
+      "provider_status": "ok",
+      "api_articles_received": 8,
+      "normalized_articles": 8,
+      "unique_urls": 8,
+      "retrieved_at_present": true
+    },
+    "graph_synthesis": {
+      "status": "passed",
+      "duration_ms": 33316.18,
+      "tool_status": "ok",
+      "tools_selected": [
+        "news"
+      ],
+      "stages": [
+        "input_processing",
+        "intent_classification",
+        "news_tool",
+        "result_validation",
+        "evidence_processing",
+        "llm_synthesis",
+        "citation_validation",
+        "response_validation"
+      ],
+      "api_articles_received": 8,
+      "normalized_articles": 8,
+      "news_evidence_created": 8,
+      "available_news": 8,
+      "selected_news": 5,
+      "dropped_news": 3,
+      "news_evidence_in_llm_context": 5,
+      "news_evidence_with_urls": 5,
+      "citation_validation": {
+        "valid": true,
+        "cited_count": 5,
+        "invalid_ids": [],
+        "news_without_url": []
+      },
+      "llm_synthesis_status": "complete",
+      "prompt_chars_estimate": 3008
+    }
+  }
+}

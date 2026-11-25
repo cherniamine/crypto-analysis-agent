@@ -1,0 +1,36 @@
+{
+  "phase": "11-resume",
+  "status": "not_run",
+  "classification": "NOT RUN",
+  "reason": "Ollama client requests to 127.0.0.1:11434 were denied by the environment. Starting ollama serve also reported that the port was already bound.",
+  "provider": "ollama",
+  "configured_model": "qwen3:8b",
+  "installed_models": "unavailable",
+  "candidate_models": ["qwen3:8b", "qwen3:4b", "phi3:mini"],
+  "benchmarks": {
+    "direct_inference": "not_run",
+    "structured_output": "not_run",
+    "btc_market": "not_run",
+    "eth_market": "not_run",
+    "btc_news": "not_run",
+    "eth_news": "not_run",
+    "comparison": "not_run",
+    "follow_up": "not_run",
+    "browser_chat": "not_run",
+    "http_restart": "not_run"
+  },
+  "hardware": {
+    "gpu": "unavailable: nvidia-smi, WMIC, and CIM were unavailable or restricted",
+    "vram": "unavailable"
+  },
+  "configuration": {
+    "llm_timeout_seconds": 60,
+    "news_evidence_limit": 5,
+    "evidence_context_char_budget": 18000,
+    "explicit_ollama_context_window": false
+  },
+  "prior_phase_baselines": {
+    "phase9_qwen3_8b_btc_market_ms": 24900,
+    "phase9_qwen3_8b_eth_market_ms": 25000
+  }
+}

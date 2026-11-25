@@ -1,0 +1,25 @@
+{
+  "phase": "11-resume-attempt-2",
+  "classification": "NOT RUN",
+  "ollama_host_log": {
+    "status": "service_started_in_user_terminal",
+    "version": "0.24.0",
+    "host": "127.0.0.1:11434",
+    "cuda_gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+    "vram_total_gib": 6.0,
+    "vram_available_gib": 5.9,
+    "default_context_tokens": 4096
+  },
+  "validation_process": {
+    "api_tags": "timed_out",
+    "ollama_list": "timed_out",
+    "ollama_ps": "timed_out",
+    "persistent_start": "blocked_port_already_bound"
+  },
+  "benchmarks": "not_run",
+  "reason": "The supplied host log confirms Ollama startup and CUDA discovery, but the validation process could not connect to the bound port. No model inventory or inference result was available.",
+  "configured_application_model": "qwen3:8b",
+  "llm_timeout_seconds": 60,
+  "news_evidence_limit": 5,
+  "evidence_context_char_budget": 18000
+}

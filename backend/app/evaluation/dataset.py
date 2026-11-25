@@ -1,0 +1,23 @@
+DATASET_VERSION = "phase3-v1"
+EVALUATION_CASES = [
+    {"id":"btc-market","question":"Analyze Bitcoin's current market situation","intent":"market","tools":["market"],"behavior":"Use market evidence and state uncertainty.","criteria":["market_data","grounding"]},
+    {"id":"eth-market","question":"What is happening with Ethereum price?","intent":"market","tools":["market"],"behavior":"Retrieve Ethereum market data.","criteria":["market_data"]},
+    {"id":"btc-eth-compare","question":"Compare BTC and ETH","intent":"comparison","tools":["market"],"behavior":"Retrieve both assets and compare them.","criteria":["market_data","completeness"]},
+    {"id":"sol-market","question":"Show SOL performance","intent":"market","tools":["market"],"behavior":"Retrieve Solana data.","criteria":["market_data"]},
+    {"id":"crypto-news","question":"What are the latest cryptocurrency headlines?","intent":"news","tools":["news"],"behavior":"Search news and cite returned articles.","criteria":["sources"]},
+    {"id":"eth-news","question":"Find the latest Ethereum developments","intent":"news","tools":["news"],"behavior":"Search Ethereum news.","criteria":["sources"]},
+    {"id":"btc-news-market","question":"Explain Bitcoin market movement using recent news","intent":"market_news","tools":["market","news"],"behavior":"Combine live market and news evidence.","criteria":["grounding","sources"]},
+    {"id":"sentiment","question":"Analyze recent crypto market sentiment","intent":"market_news","tools":["market","news"],"behavior":"Use retrieved news and market context.","criteria":["grounding"]},
+    {"id":"why-event","question":"What market events could explain recent price changes?","intent":"market_news","tools":["market","news"],"behavior":"Discuss events only when supported.","criteria":["uncertainty"]},
+    {"id":"general-definition","question":"What is a blockchain?","intent":"general","tools":[],"behavior":"Answer generally without live retrieval.","criteria":["relevance"]},
+    {"id":"general-wallet","question":"How do crypto wallets work?","intent":"general","tools":[],"behavior":"Provide educational explanation.","criteria":["relevance"]},
+    {"id":"ambiguous","question":"Is it a good time?","intent":"ambiguous","tools":[],"behavior":"Ask for clarification or state the question is insufficient.","criteria":["uncertainty"]},
+    {"id":"followup-price","question":"What about ETH?","intent":"follow_up","tools":["market"],"behavior":"Use conversation context and retrieve ETH data.","criteria":["context"]},
+    {"id":"followup-news","question":"Which source supports that?","intent":"follow_up","tools":["news"],"behavior":"Refer to prior evidence sources.","criteria":["context","sources"]},
+    {"id":"missing-market","question":"Analyze BTC with no market provider","intent":"market","tools":["market"],"behavior":"State market data is unavailable and do not invent values.","criteria":["uncertainty"]},
+    {"id":"news-error","question":"Latest crypto news during a NewsAPI outage","intent":"news","tools":["news"],"behavior":"Report provider failure gracefully.","criteria":["uncertainty"]},
+    {"id":"unsupported","question":"Analyze an unsupported coin ZZZ","intent":"market","tools":["market"],"behavior":"Explain unavailable symbol data.","criteria":["uncertainty"]},
+    {"id":"stale","question":"Use yesterday's stale BTC data","intent":"market","tools":["market"],"behavior":"Label timestamps and caution about staleness.","criteria":["uncertainty"]},
+    {"id":"no-tool-greeting","question":"Hello, how are you?","intent":"general","tools":[],"behavior":"Respond conversationally without providers.","criteria":["relevance"]},
+    {"id":"no-tool-code","question":"Write Python code to calculate a moving average","intent":"general","tools":[],"behavior":"Answer as a coding question without market retrieval.","criteria":["relevance"]},
+]
