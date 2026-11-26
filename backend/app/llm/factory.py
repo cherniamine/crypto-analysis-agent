@@ -21,7 +21,7 @@ def create_llm(settings: Settings | None = None):
     if d.provider=="gemini":
         if not s.gemini_api_key: raise RuntimeError("GEMINI_API_KEY is not configured")
         from langchain_google_genai import ChatGoogleGenerativeAI
-        return ChatGoogleGenerativeAI(model=s.gemini_model,google_api_key=s.gemini_api_key,temperature=0,timeout=s.llm_timeout_seconds,max_retries=2)
+        return ChatGoogleGenerativeAI(model=s.gemini_model,google_api_key=s.gemini_api_key,temperature=0,request_timeout=s.gemini_timeout_seconds,retries=0)
     if d.provider=="openai":
         from langchain_openai import ChatOpenAI
         if not s.openai_api_key: raise RuntimeError("OPENAI_API_KEY is not configured")

@@ -22,6 +22,20 @@ def test_provider_switching_is_configuration_only():
 def test_missing_gemini_key_is_explicitly_unconfigured():
     assert descriptor(Settings(llm_provider="gemini",gemini_api_key=None)).configured is False
 
+def test_gemini_defaults_are_production_safe_and_ollama_is_unchanged():
+    gemini=Settings(_env_file=None,llm_provider="gemini",gemini_api_key="test")
+    ollama=Settings(_env_file=None,llm_provider="ollama")
+    assert gemini.gemini_model=="gemini-3.8-flash"
+    assert gemini.gemini_timeout_seconds==40
+    assert ollama.ollama_model=="qwen3:8b"
+    assert ollama.llm_timeout_seconds==60
+
+def test_gemini_factory_uses_supported_timeout_and_retry_parameters():
+    model=create_llm(Settings(_env_file=None,llm_provider="gemini",gemini_api_key="test",gemini_model="test-model",gemini_timeout_seconds=40))
+    assert model.model in {"test-model", "models/test-model"}
+    assert model.timeout==40
+    assert model.max_retries==0
+
 def test_development_secret_default_is_allowed_without_production_credentials():
     settings=Settings(_env_file=None,app_env="development")
     assert settings.secret_key=="local-development-only-secret"

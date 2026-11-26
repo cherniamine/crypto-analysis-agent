@@ -1,9 +1,24 @@
 import json
 import re
+import time
 from app.agents.prompts import SYSTEM_PROMPT
 from app.core.config import get_settings
 from app.schemas.analysis import AnalysisResponse
 from app.llm.factory import create_llm, descriptor
+from app.core.observability import log_event
+
+def _llm_error_category(exc: Exception) -> str:
+    name=type(exc).__name__.lower()
+    text=str(exc).lower()
+    if "timeout" in name or "deadline" in name or "timeout" in text:
+        return "timeout"
+    if "notfound" in name or "not found" in text or "404" in text:
+        return "model_not_found"
+    if "resourceexhausted" in name or "ratelimit" in name or "quota" in text or "429" in text:
+        return "quota_or_rate_limit"
+    if any(token in name for token in ("connection", "network", "transport", "serviceunavailable", "unavailable")):
+        return "network"
+    return "unknown"
 
 def validate_citations(answer: str, evidence: list[dict] | None = None, require_news_citation: bool = False) -> dict:
     records={item.get("id"):item for item in (evidence or [])}
@@ -60,6 +75,7 @@ async def generate_analysis(question: str, history: list[dict], observations: di
     if not active.configured:
         return (f"## Analyst unavailable\n\nThe configured LLM provider `{active.provider}` is not configured, so no AI-generated interpretation was produced. The application will not substitute a fabricated analysis.\n\n### Data status\n- Provider results remain available in the evidence panel.\n- Configure the provider and retry this question.", [{"stage":"llm_synthesis","status":"unavailable","label":f"{active.provider} credentials or model are not configured"}])
     try:
+        started=time.perf_counter()
         llm=create_llm(settings)
         structured = llm.with_structured_output(AnalysisResponse)
         prior = "\n".join(f"{m.get('role')}: {m.get('content')}" for m in history[-8:])
@@ -70,6 +86,10 @@ async def generate_analysis(question: str, history: list[dict], observations: di
         packet_selection=json.loads(packet).get("evidence_selection",{})
         selected_news=packet_selection.get("news_included",0)
         selected_market=sum(item.get("type")=="market" for item in json.loads(packet).get("validated_evidence",[]))
+        duration_ms=round((time.perf_counter()-started)*1000,2)
+        log_event("llm_synthesis",provider=active.provider,model=active.model,duration_ms=duration_ms,status="success")
         return analysis.to_markdown(), [{"stage":"llm_synthesis","status":"complete","label":f"Generated structured analysis with {active.provider}/{active.model}; prompt {len(prompt)} chars (~{len(prompt)//4} tokens); market evidence in context {selected_market}; news evidence in context {selected_news}"}]
     except Exception as exc:
+        duration_ms=round((time.perf_counter()-started)*1000,2) if "started" in locals() else 0
+        log_event("llm_synthesis",provider=active.provider,model=active.model,duration_ms=duration_ms,status="error",exception_type=type(exc).__name__,error_category=_llm_error_category(exc))
         return (f"## Analyst unavailable\n\nThe {active.provider} synthesis request failed safely: `{type(exc).__name__}`. No unsupported market claims were generated.\n\nRetry after checking the provider configuration and availability.", [{"stage":"llm_synthesis","status":"error","label":f"{active.provider} synthesis failed"}])
