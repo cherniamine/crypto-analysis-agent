@@ -42,7 +42,7 @@ Implemented: modular provider clients, compiled LangGraph input/routing/executio
 
 Phase 3 adds a 20-case deterministic evaluation benchmark, metric calculations, JSON reports at `backend/evaluation/results/latest.json`, structured request/agent logs, request IDs, bounded retry/backoff for transient provider errors, and an evaluation summary card in the frontend. See [docs/evaluation.md](docs/evaluation.md).
 
-The hybrid runtime now supports Ollama/Qwen3 for local development and Gemini for cloud deployment through `LLM_PROVIDER`, while preserving OpenAI compatibility. Persistence uses SQLAlchemy for both SQLite and PostgreSQL URLs, with Alembic migrations. See [docs/hybrid-architecture.md](docs/hybrid-architecture.md), [.env.local.example](.env.local.example), and [.env.production.example](.env.production.example).
+The hybrid runtime now supports Ollama/Qwen3 for local development and Gemini for cloud deployment through `LLM_PROVIDER`, while preserving OpenAI compatibility. Persistence uses SQLAlchemy for both SQLite and PostgreSQL URLs, with explicit Alembic migrations. For Neon, use a `postgresql+psycopg://...?...sslmode=require` URL and run `alembic -c alembic.ini upgrade head` from the repository root before starting the backend. See [docs/hybrid-architecture.md](docs/hybrid-architecture.md), [.env.local.example](.env.local.example), and [.env.production.example](.env.production.example).
 
 ## Release validation
 

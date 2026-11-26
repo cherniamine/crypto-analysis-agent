@@ -3,7 +3,15 @@ from sqlalchemy import engine_from_config, pool
 from app.database.models import Base
 from app.core.config import get_settings
 config=context.config
-config.set_main_option("sqlalchemy.url", get_settings().database_url.replace("%","%%"))
+
+def normalized_url(url: str) -> str:
+    if url.startswith("postgresql://"):
+        return url.replace("postgresql://", "postgresql+psycopg://", 1)
+    if url.startswith("postgres://"):
+        return url.replace("postgres://", "postgresql+psycopg://", 1)
+    return url
+
+config.set_main_option("sqlalchemy.url", normalized_url(get_settings().database_url).replace("%","%%"))
 target_metadata=Base.metadata
 def run_migrations_offline():
     context.configure(url=config.get_main_option("sqlalchemy.url"),target_metadata=target_metadata,literal_binds=True,compare_type=True)

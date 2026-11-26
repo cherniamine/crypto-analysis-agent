@@ -25,6 +25,6 @@ uvicorn app.main:app --reload
 
 ## Gemini / PostgreSQL
 
-Copy `.env.production.example` to the backend environment, set `GEMINI_API_KEY`, `DATABASE_URL`, `CORS_ORIGINS`, and provider keys, then run `alembic upgrade head` before starting Uvicorn. Gemini quota or authentication failures become explicit unavailable/error states; they never trigger fabricated analysis.
+Copy `.env.production.example` to the backend environment, set `GEMINI_API_KEY`, `DATABASE_URL`, `CORS_ORIGINS`, and provider keys, then run `alembic -c alembic.ini upgrade head` from the repository root before starting Uvicorn. For Neon, use a `postgresql+psycopg://...?...sslmode=require` URL. Migrations are intentionally explicit rather than automatic at application startup. Gemini quota or authentication failures become explicit unavailable/error states; they never trigger fabricated analysis.
 
 For release validation, keep `LLM_PROVIDER=ollama` locally and run browser tests against the actual FastAPI and Next.js processes. Use `LLM_PROVIDER=gemini` only where a Gemini key is configured; deployment configuration alone is not a deployment result.

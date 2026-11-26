@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     openai_api_key: str | None = None
     freecryptoapi_api_key: str | None = None
     newsapi_api_key: str | None = None
-    database_url: str = "sqlite:///./crypto_agent.db"
+    database_url: str = "sqlite:///./data/crypto_agent.db"
     secret_key: str = "local-development-only-secret"
     openai_model: str = "gpt-4o-mini"
     llm_provider: str = "ollama"
