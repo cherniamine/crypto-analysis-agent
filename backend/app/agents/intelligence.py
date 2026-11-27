@@ -6,6 +6,50 @@ from app.core.config import get_settings
 from app.schemas.analysis import AnalysisResponse
 from app.llm.factory import create_llm, descriptor
 from app.core.observability import log_event
+from google.api_core.exceptions import DeadlineExceeded, GatewayTimeout, NotFound, ResourceExhausted, ServiceUnavailable
+
+_INFERRED_HTTP_STATUS_BY_EXCEPTION=(
+    (NotFound,404),
+    (ServiceUnavailable,503),
+    (GatewayTimeout,504),
+    (DeadlineExceeded,504),
+    (ResourceExhausted,429),
+)
+
+def _safe_getattr(value, attribute):
+    try:
+        return getattr(value,attribute,None)
+    except Exception:
+        return None
+
+def _exception_metadata(exc: Exception) -> dict:
+    """Extract only bounded, non-sensitive status metadata from an exception chain."""
+    result={"http_status_code":None,"inferred_http_status_code":None,"google_api_status":None,"status_source":"unavailable"}
+    try:
+        current=exc; visited=set()
+        for _ in range(3):
+            if current is None or id(current) in visited: break
+            visited.add(id(current))
+            response=_safe_getattr(current,"response")
+            response_status=_safe_getattr(response,"status_code") if response is not None else None
+            if isinstance(response_status,int) and 100 <= response_status <= 599:
+                result["http_status_code"]=response_status
+                result["inferred_http_status_code"]=None
+                result["status_source"]="http_response"
+            grpc_status=_safe_getattr(current,"grpc_status_code")
+            grpc_name=_safe_getattr(grpc_status,"name")
+            if isinstance(grpc_name,str) and grpc_name:
+                result["google_api_status"]=grpc_name
+            if result["inferred_http_status_code"] is None and result["http_status_code"] is None:
+                for exception_type,status in _INFERRED_HTTP_STATUS_BY_EXCEPTION:
+                    if isinstance(current,exception_type):
+                        result["inferred_http_status_code"]=status
+                        result["status_source"]="exception_mapping"
+                        break
+            current=_safe_getattr(current,"__cause__") or _safe_getattr(current,"__context__")
+    except Exception:
+        return {"http_status_code":None,"inferred_http_status_code":None,"google_api_status":None,"status_source":"unavailable"}
+    return result
 
 def _llm_error_category(exc: Exception) -> str:
     name=type(exc).__name__.lower()
@@ -91,5 +135,5 @@ async def generate_analysis(question: str, history: list[dict], observations: di
         return analysis.to_markdown(), [{"stage":"llm_synthesis","status":"complete","label":f"Generated structured analysis with {active.provider}/{active.model}; prompt {len(prompt)} chars (~{len(prompt)//4} tokens); market evidence in context {selected_market}; news evidence in context {selected_news}"}]
     except Exception as exc:
         duration_ms=round((time.perf_counter()-started)*1000,2) if "started" in locals() else 0
-        log_event("llm_synthesis",provider=active.provider,model=active.model,duration_ms=duration_ms,status="error",exception_type=type(exc).__name__,error_category=_llm_error_category(exc))
+        log_event("llm_synthesis",provider=active.provider,model=active.model,duration_ms=duration_ms,status="error",exception_type=type(exc).__name__,error_category=_llm_error_category(exc),**_exception_metadata(exc))
         return (f"## Analyst unavailable\n\nThe {active.provider} synthesis request failed safely: `{type(exc).__name__}`. No unsupported market claims were generated.\n\nRetry after checking the provider configuration and availability.", [{"stage":"llm_synthesis","status":"error","label":f"{active.provider} synthesis failed"}])
