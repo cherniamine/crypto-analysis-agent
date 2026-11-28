@@ -1,4 +1,5 @@
 import re
+import unicodedata
 from typing import Any
 from app.core.config import get_settings
 from langgraph.graph import END, StateGraph
@@ -8,6 +9,14 @@ from app.tools.crypto_market import market_data
 from app.tools.crypto_news import crypto_news
 
 MAX_TOOL_CALLS = 2
+
+def normalize_route_text(text: str) -> str:
+    normalized=unicodedata.normalize("NFKD", text or "")
+    normalized="".join(char for char in normalized if not unicodedata.combining(char))
+    return re.sub(r"\s+", " ", re.sub(r"[^\w\s]", " ", normalized.lower(), flags=re.UNICODE)).strip()
+
+def contains_term(text: str, terms: tuple[str, ...]) -> bool:
+    return any(re.search(rf"\b{re.escape(term)}\b", text) for term in terms)
 
 def build_news_query(question: str) -> str:
     q=question.lower()
@@ -21,16 +30,28 @@ def process_input(state: AgentState):
     return {"question": state.get("question", "").strip(), "activity": [{"stage":"input_processing","status":"complete","label":"Question normalized"}]}
 
 def route(state: AgentState):
-    q=state["question"].lower(); tools=[]
-    no_tool_terms=["hello", "how are you", "what is a blockchain", "how do crypto wallets", "write python code", "is it a good time"]
-    if any(x in q for x in no_tool_terms):
+    q=normalize_route_text(state["question"]); tools=[]
+    no_tool_terms=("hello", "how are you", "what is a blockchain", "how do crypto wallets", "write python code", "is it a good time")
+    if any(re.search(rf"\b{re.escape(term)}\b", q) for term in no_tool_terms):
         return {"tools_needed":[],"activity":state.get("activity",[])+[{"stage":"intent_classification","status":"complete","label":"General or ambiguous question; no live tool required"}]}
-    has_news=any(x in q for x in ["news","headline","sentiment","latest","event","development","why did","source"])
-    has_market_action=any(x in q for x in ["price","market","compare","performance","movement","analyze","analysis","affect"])
-    has_asset=any(x in q for x in ["btc","bitcoin","eth","ethereum","sol","xrp","ada","doge"])
+    news_terms=("news","actualite","actualites","nouvelle","nouvelles","headline","headlines","titre","titres","development","developments","developpement","developpements","event","evenement","evenements","sentiment","recent","recente","recents","recentes","source")
+    why_terms=("why did","pourquoi")
+    market_terms=("price","prix","cours","valeur","market","marche","performance","evolution","hausse","baisse","augmentation","diminution","bullish","bearish","movement","variation","compare","comparaison","affect")
+    analysis_terms=("analyze","analyse","analysis")
+    price_terms=("price","prix","cours","valeur")
+    financial_context=("bitcoin","btc","ethereum","eth","sol","xrp","ada","doge","crypto","cryptocurrency","coin","token","market","marche")
+    has_explicit_news=contains_term(q,news_terms)
+    has_why=contains_term(q,why_terms)
+    has_news=has_explicit_news or (has_why and not contains_term(q,market_terms))
+    has_asset=contains_term(q,("btc","bitcoin","eth","ethereum","sol","xrp","ada","doge"))
+    has_market_action=contains_term(q,market_terms)
+    if contains_term(q,analysis_terms) and not has_market_action:
+        has_market_action=not has_explicit_news or contains_term(q,("using recent news","using the latest news","en utilisant les dernieres actualites"))
+    if contains_term(q,price_terms) and not (has_asset or contains_term(q,financial_context)):
+        has_market_action=False
     if has_market_action or (has_asset and not has_news): tools.append("market")
     if has_news: tools.append("news")
-    selected=tools or (["news"] if "what happened" in q else ["market"])
+    selected=tools or (["news"] if contains_term(q,("what happened",)) else ["market"])
     return {"tools_needed":selected,"activity":state.get("activity",[])+[{"stage":"intent_classification","status":"complete","label":f"Selected {', '.join(selected)} tool"}]}
 
 async def execute(state: AgentState):
